@@ -1,13 +1,13 @@
 pipeline {
-  image docker:'node:0.12'
+  image none
   stages {
     stage('build') {
-      sh 'ls -lah'
-      sh 'npm --version'
-      sh 'npm install'
-    }
-    stage('test') {
-      sh 'npm test'
+      node('master') {
+        echo 'looking'
+        sh 'ls -lah'        
+        checkout scm
+        sh 'ls -lah'
+      }
     }
   }
 }
